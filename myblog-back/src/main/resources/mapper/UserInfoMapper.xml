@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bing.myblog.mapper.UserInfoMapper">
+
+    <select id="getByUserName" parameterType="String" resultType="com.bing.myblog.entity.UserInfo">
+        select users.id,user_name,user_password,salt,role_id,permissions
+        from users,role
+        where user_name = #{userName}
+        AND users.role_id=role.id
+    </select>
+
+    <select id="getById" parameterType="int" resultType="com.bing.myblog.entity.UserInfo">
+        select users.id,user_name,user_password,salt,role_id,permissions
+        from users,role
+        where users.id = #{id}
+        AND users.role_id=role.id
+    </select>
+
+
+</mapper>

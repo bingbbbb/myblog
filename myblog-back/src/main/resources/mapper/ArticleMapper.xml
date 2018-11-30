@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bing.myblog.mapper.ArticleMapper">
+    <select id="getById" parameterType="int" resultType="com.bing.myblog.entity.Article">
+        select * from article where id = #{id}
+    </select>
+
+    <select id="getAll" resultType="com.bing.myblog.entity.Article">
+        select * from article
+    </select>
+
+    <insert id="addArticle" parameterType="com.bing.myblog.entity.Article">
+        insert into article(title,summary,content,category,create_date,modify_date)
+        values(#{title},#{summary},#{content},#{category},#{createDate},#{modifyDate})
+    </insert>
+
+    <update id="updateArticle" parameterType="com.bing.myblog.entity.Article">
+        update article
+        <set>
+            <if test="article.title != null">
+                title = #{article.title},
+            </if>
+            <if test="article.summary != null">
+                summary = #{article.summary},
+            </if>
+            <if test="article.content != null">
+                content = #{article.content},
+            </if>
+            <if test="article.category != null">
+                category = #{article.category},
+            </if>
+            <if test="article.modifyDate != null">
+                modify_date = #{article.modifyDate},
+            </if>
+        </set>
+        where id=#{article.id}
+    </update>
+
+    <delete id="deleteArticle">
+        delete from article where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bing.myblog.mapper.CommentMapper">
+    <select id="getByArticleId" parameterType="int" resultType="com.bing.myblog.entity.Comment">
+        select * from comment where article_id = #{articleId}
+    </select>
+
+
+    <insert id="addComment" parameterType="com.bing.myblog.entity.Comment">
+        insert into comment(comment_detail,article_id,user_id,create_date)
+        values(#{commentDetail},#{articleId},#{userId},#{createDate})
+    </insert>
+
+
+    <delete id="deleteCommentByid">
+        delete from comment where id = #{commentId}
+    </delete>
+
+</mapper>

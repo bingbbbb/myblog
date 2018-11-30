@@ -1,0 +1,17 @@
+server:
+  port: 8082
+spring:
+  datasource:
+
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/myblog?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 
+    druid:
+      initial-size: 50
+      max-active: 100
+      min-idle: 20
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  configLocation: classpath:mybatis.xml
